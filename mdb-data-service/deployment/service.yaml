@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mdb-data
+  labels:
+    app: mdb-data
+spec:
+  type: NodePort
+  ports:
+    - port: 8001
+      name: http
+  selector:
+    app: mdb-data
+

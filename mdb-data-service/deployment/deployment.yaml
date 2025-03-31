@@ -1,0 +1,35 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: mdb-data
+  labels:
+    app: mdb-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mdb-data
+  template:
+    metadata:
+      labels:
+        app: mdb-data
+    spec:
+      containers:
+      - image: haraldu/mdb-data:1
+        imagePullPolicy: IfNotPresent
+        name: mdb-data
+        ports:
+        - containerPort: 8001
+        env:
+        - name: DELAY
+          valueFrom:
+            configMapKeyRef:
+              name: mdb-data-config
+              key: DELAY
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8001
+          initialDelaySeconds: 5
+          periodSeconds: 15
+

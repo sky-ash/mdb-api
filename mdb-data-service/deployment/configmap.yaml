@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdb-data-config
+data:
+  DELAY: "0"
+

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mdb-api-config
+  #labels:
+  #  app: mdb-api
+data:
+  MDB_DATA_BASE_URL: "http://mdb-data:8001"  # Adress of MdB-Data-Service in Docker & Kubernetes
+  MDB_API_PORT: "8002" 

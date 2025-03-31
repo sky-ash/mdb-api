@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mdb-api
+  labels:
+    app: mdb-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mdb-api
+  template:
+    metadata:
+      labels:
+        app: mdb-api
+    spec:
+      containers:
+      - name: mdb-api
+        image: mdb-api:latest #mdb-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8002
+        envFrom:
+        - configMapRef:
+            name: mdb-api-config
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8002
+          initialDelaySeconds: 5
+          periodSeconds: 15

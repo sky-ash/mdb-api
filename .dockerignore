@@ -1,0 +1,9 @@
+venv/
+.venv/
+__pycache__/
+app/__pycache__
+deployment/
+mdb-data-service/
+mdb-data-service/deployment/
+*.code-workspace
+README.md
